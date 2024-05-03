@@ -49,6 +49,10 @@ void cudaCheck(cudaError_t error, const char *file, int line) {
 };
 #define cudaCheck(err) (cudaCheck(err, __FILE__, __LINE__))
 
+void cuda_free(void *ptr) {cudaCheck(cudaFree(ptr));}
+void cuda_malloc(void **ptr, size_t size) {cudaCheck(cudaMalloc(ptr, size));}
+void cuda_get_last_error() {cudaCheck(cudaGetLastError());}
+
 // cuBLAS error checking
 void cublasCheck(cublasStatus_t status, const char *file, int line)
 {
